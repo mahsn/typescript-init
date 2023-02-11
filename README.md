@@ -1,25 +1,25 @@
 # typescript-init
 
 
-##How to Setup a TypeScript + Node.js Project
+## How to Setup a TypeScript + Node.js Project
 
 In this guide, we walk through the process of creating a TypeScript project from scratch with cold-reloading, and scripts for building, development, and production environments.
 
 We talk about a lot of advanced Node.js and TypeScript concepts on this blog, particularly Domain-Driven Design and large-scale enterprise application patterns. However, after receiving emails from readers interested in seeing what a basic TypeScript starter project looks like, I've put together just that.
 
-###Prequisites
+### Prequisites
 You should have Node and npm installed
 You should be familiar with Node and the npm ecosystem
 You have a code editor installed (preferably VS Code, it's the champ for TypeScript)
 
 
-###Goals
+### Goals
 In this short guide, I'll walk you through the process of creating a basic TypeScript application and compiling it. It's actually really easy!
 
-###View the source
+### View the source
 Afterwards, we'll setup a few scripts for hot-reloading in development, building for production, and running in production.
 
-###About TypeScript
+### About TypeScript
 TypeScript, developed and appropriated labeled by Microsoft as "JavaScript that scales", is a superset of JavaScript, meaning that everything JavaScript can do, TypeScript can do (and more better).
 
 TypeScript was primarily meant to solve two problems:
@@ -28,7 +28,7 @@ TypeScript was primarily meant to solve two problems:
    - Provide JavaScript developers with the ability to utilize planned features from future JavaScript editions against current JavaScript engines.
 We use TypeScript for most of the topics on this blog because it's a lot better suited for creating long-lasting software and having the compiler help catch bugs and validate types is tremendously helpful.
 
-###Initial Setup
+### Initial Setup
 Let's create a folder for us to work in.
 
  - mkdir typescript-starter
@@ -49,7 +49,7 @@ This probably doesn't come as a surprise ;)
 
 After we install typescript, we get access to the command line TypeScript compiler through the tsc command. More on that below.
 
-###Install ambient Node.js types for TypeScript
+### Install ambient Node.js types for TypeScript
 T  ypeScript has Implicit, Explicit, and Ambient types. Ambient types are types that get added to the global execution scope. Since we're using Node, it would be good if we could get type safety and auto-completion on the Node apis like file, path, process, etc. That's what installing the DefinitelyTyped type definition for Node will do.
 
  - npm install @types/node --save-dev
@@ -64,14 +64,22 @@ The tsconfig.json is where we define the TypeScript compiler options. We can cre
             --module commonjs --allowJs true --noImplicitAny true 
     
 
-####rootDir:  This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
-####outDir:   Where TypeScript puts our compiled code. We want it to go to a build/ folder.
-####esModuleInterop: If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
-####resolveJsonModule: If we use JSON in this project, this option allows TypeScript to use it.
-####lib: This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
-####module: commonjs is the standard Node module system in 2019. Let's use that.
-####allowJs: If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
-####noImplicitAny: In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
+#### rootDir:  
+This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
+#### outDir:   
+Where TypeScript puts our compiled code. We want it to go to a build/ folder.
+#### esModuleInterop: 
+If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
+#### resolveJsonModule:
+If we use JSON in this project, this option allows TypeScript to use it.
+#### lib: 
+This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
+#### module: 
+commonjs is the standard Node module system in 2019. Let's use that.
+#### allowJs: 
+If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
+#### noImplicitAny: 
+In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
 
 
 {
@@ -176,13 +184,13 @@ And let's write some code.
  - console.log('Hello world!')
 
 
-###Compiling our TypeScript
+### Compiling our TypeScript
 To compile our code, we'll need to run the tsc command using npx, the Node package executer. tsc will read the tsconfig.json in the current directory, and apply the configuration against the TypeScript compiler to generate the compiled JavaScript code.
 
  - npx tsc
 
 
-###Our compiled code
+### Our compiled code
 Check out build/index.js, we've compiled our first TypeScript file.
 
  - "use strict";
@@ -230,7 +238,7 @@ And then, add this to your package.json.
 
 Now, when we run npm run build, rimraf will remove our old build folder before the TypeScript compiler emits new code to dist.
 
-###Production startup script
+### Production startup script
 In order to start the app in production, all we need to do is run the build command first, and then execute the compiled JavaScript at build/index.js.
 
 The startup script looks like this.
@@ -240,11 +248,11 @@ The startup script looks like this.
 
 I told you it was simple! Now, off you go. Create great things, my friend.
 
-###View the source
+### View the source
 A reminder that you can view the entire source code for this here.
 
 
-###Scripts overview
+### Scripts overview
  - npm run start:dev
 Starts the application in development using nodemon and ts-node to do cold reloading.
 
