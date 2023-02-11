@@ -58,20 +58,20 @@ T  ypeScript has Implicit, Explicit, and Ambient types. Ambient types are types 
 Create a tsconfig.json.
 The tsconfig.json is where we define the TypeScript compiler options. We can create a tsconfig with several options set.
 
-    ```
+    
         - npx tsc --init --rootDir src --outDir build \
             --esModuleInterop --resolveJsonModule --lib es6 \
             --module commonjs --allowJs true --noImplicitAny true 
-    ```
+    
 
-__rootDir__: This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
-__outDir__: Where TypeScript puts our compiled code. We want it to go to a build/ folder.
-__esModuleInterop__: If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
-__resolveJsonModule__: If we use JSON in this project, this option allows TypeScript to use it.
-__lib__: This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
-__module__: commonjs is the standard Node module system in 2019. Let's use that.
-__allowJs__: If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
-__noImplicitAny__: In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
+**rootDir**:  This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
+**outDir**:   Where TypeScript puts our compiled code. We want it to go to a build/ folder.
+**esModuleInterop**: If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
+**resolveJsonModule**: If we use JSON in this project, this option allows TypeScript to use it.
+**lib**: This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
+**module**: commonjs is the standard Node module system in 2019. Let's use that.
+**allowJs**: If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
+**noImplicitAny**: In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
 
 
 {
@@ -146,20 +146,20 @@ __noImplicitAny__: In TypeScript files, don't allow a type to be unexplicitly sp
 We can go ahead and clean the commented out stuff that we don't need. Our tsconfig.json should look like this:
 
 
-    ```{
-    "compilerOptions": {
-        "target": "es5",                          
-        "module": "commonjs",                    
-        "lib": ["es6"],                     
-        "allowJs": true,
-        "outDir": "build",                          
-        "rootDir": "src",
-        "strict": true,         
-        "noImplicitAny": true,
-        "esModuleInterop": true,
-        "resolveJsonModule": true
-    }
-    }```
+    {
+      "compilerOptions": {
+           "target": "es5",                          
+           "module": "commonjs",                    
+           "lib": ["es6"],                     
+           "allowJs": true,
+           "outDir": "build",                          
+           "rootDir": "src",
+           "strict": true,         
+           "noImplicitAny": true,
+           "esModuleInterop": true,
+           "resolveJsonModule": true
+      }
+   }
 
 
 We're set to run our first TypeScript file.
@@ -198,12 +198,12 @@ Cold reloading is nice for local development. In order to do this, we'll need to
 
  Add a nodemon.json config.
 
-    ```{
+    {
         "watch": ["src"],
         "ext": ".ts,.js",
         "ignore": [],
         "exec": "npx ts-node ./src/index.ts"
-    }```
+    }
 
 
 And then to run the project, all we have to do is run nodemon. Let's add a script for that.
