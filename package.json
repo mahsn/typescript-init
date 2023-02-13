@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/mahsn/typescript-init#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/moment": "^2.13.0",
     "@types/node": "^18.13.0",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.20",
     "rimraf": "^4.1.2",
     "ts-node": "^10.9.1",
